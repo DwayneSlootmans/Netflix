@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Netflix
 //
-//  Created by Slootmans Dwayne on 25/11/15.
+//  Created by Slootmans Dwayne on 26/11/15.
 //  Copyright © 2015 Tiny Rock Productions. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,8 +14,8 @@ import CoreData
 
 extension User {
 
-    @NSManaged var userName: String?
     @NSManaged var favoriteActor: String?
-    @NSManaged var profilePictureLocation: String?
+    @NSManaged var profilePicture: NSData?
+    @NSManaged var userName: String?
 
 }

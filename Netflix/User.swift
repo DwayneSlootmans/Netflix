@@ -12,7 +12,7 @@ import CoreData
 
 class User: NSManagedObject {
 
-    // Side note here: because there is only 1 user at a time and there are only 3 fields in the user details, I would advise to use NSUSerdefaults here. It is a lot easier, faster and also persisted.
+    //Fetch the only record in the DB which represents the current user of the app.
     class func getCurrentUserDetails() -> User {
         var users  = [User]()
         
@@ -26,12 +26,6 @@ class User: NSManagedObject {
             }
         } catch let fetchError as NSError {
             print("getGalleryForItem error: \(fetchError.localizedDescription)")
-        }
-        
-        // Then you can use your propertys.
-        for user in users {
-            print(user.userName)
-            
         }
         return User()
     }
