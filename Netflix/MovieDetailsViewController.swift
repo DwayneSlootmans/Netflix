@@ -10,30 +10,32 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     var movie:Movie?
-
+    @IBOutlet weak var imageViewBackgroundImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if movie != nil {
+        if let currentMovie = movie {
             self.title = movie?.title
+            imageViewBackgroundImage.downloadedFrom(link:currentMovie.poster, contentMode: UIViewContentMode.ScaleToFill)
         }
-        
-        // Do any additional setup after loading the view.
+        applyBlurEffect()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func applyBlurEffect() {
+        //only apply the blur if the user hasn't disabled transparency effects
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            self.view.backgroundColor = UIColor.clearColor()
+            
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            
+            self.view.addSubview(blurEffectView)
+        }
+        else {
+            self.view.backgroundColor = UIColor.blackColor()
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

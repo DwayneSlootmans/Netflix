@@ -8,8 +8,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var currentUser:User?
     private var movies:NSArray = Array<Movie>()
@@ -23,9 +25,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        
         //Get current user if none was passed just to be sure
         if currentUser == nil {
-            currentUser = User.getCurrentUserDetails()
+            currentUser = NetflixDataManager.sharedManager.getCurrentUserDetails()
         }
         self.title = currentUser?.favoriteActor
         
@@ -35,16 +40,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.movies = movies
                 dispatch_async(dispatch_get_main_queue(),{
                     self.tableView.reloadData()
+                    self.collectionView.reloadData()
                 })
             })
         }
         // Fetch the favorites from the DB
-        self.favorites = Favorite.getAllFavoriteMovieTitles()
+        self.favorites = NetflixDataManager.sharedManager.getAllFavoriteMovieTitles()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func segmentedControlDidChangeValue(sender: AnyObject) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            self.collectionView.hidden = true
+            self.tableView.hidden = false
+        } else {
+            self.collectionView.hidden = false
+            self.tableView.hidden = true
+        }
     }
     
     //MARK - TableView
@@ -72,7 +83,32 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
 
-    // MARK: - Navigation
+    //MARK: - CollectionView
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.selectedMovieIndex = indexPath.row
+        performSegueWithIdentifier("HomeToMovieDetailSegue", sender: self)
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("movieCollectionCell", forIndexPath: indexPath) as! MovieTableCollectionViewCell
+        
+        if let movie = movies[indexPath.row] as? Movie {
+            if favorites.containsObject(movie.title) {
+                cell.btnFavorite.setImage(UIImage(named: "favorite_full"), forState: UIControlState.Normal)
+            }
+            cell.lblTitle.text = "\(movie.title) (\(movie.releaseYear))"
+            cell.movie = movie
+        }
+        
+        return cell
+    }
+    
+    //MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HomeToMovieDetailSegue" {

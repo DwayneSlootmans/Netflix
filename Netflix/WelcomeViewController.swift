@@ -20,7 +20,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Fetch user from DB and show details if present
-        user = User.getCurrentUserDetails()
+        user = NetflixDataManager.sharedManager.getCurrentUserDetails()
         if let currentUser = user {
             txtUserName.text = currentUser.userName
             txtFavoriteActor.text = currentUser.favoriteActor

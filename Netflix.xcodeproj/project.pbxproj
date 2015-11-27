@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6227AD276F5A5E2DA96ECF77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BAEED1F12AF5EE4385312C /* libPods.a */; };
+		915625711C073A6600208528 /* MovieTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915625701C073A6600208528 /* MovieTableCollectionViewCell.swift */; };
 		9193CB341C063E9300AFE9BE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9193CB331C063E9300AFE9BE /* Utilities.swift */; };
 		9193CB361C0643D100AFE9BE /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9193CB351C0643D100AFE9BE /* MovieTableViewCell.swift */; };
 		9193CB391C06517700AFE9BE /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9193CB381C06517700AFE9BE /* MovieDetailsViewController.swift */; };
@@ -19,6 +20,7 @@
 		91BAEDBD1C05B88100CDF292 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BAEDBC1C05B88100CDF292 /* HomeViewController.swift */; };
 		91BAEDC01C05C1A000CDF292 /* NetflixRestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BAEDBF1C05C1A000CDF292 /* NetflixRestManager.swift */; };
 		91BAEDC21C06320F00CDF292 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BAEDC11C06320F00CDF292 /* Movie.swift */; };
+		91C7C0D31C075AE300F69D02 /* NetflixDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C7C0D21C075AE300F69D02 /* NetflixDataManager.swift */; };
 		91E8AF481C0597CE0047ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E8AF471C0597CE0047ED16 /* AppDelegate.swift */; };
 		91E8AF4A1C0597CE0047ED16 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E8AF491C0597CE0047ED16 /* WelcomeViewController.swift */; };
 		91E8AF4D1C0597CE0047ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E8AF4B1C0597CE0047ED16 /* Main.storyboard */; };
@@ -48,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		17B35A7A8EF46A6AE7299D68 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		915625701C073A6600208528 /* MovieTableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableCollectionViewCell.swift; sourceTree = "<group>"; };
 		9193CB331C063E9300AFE9BE /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		9193CB351C0643D100AFE9BE /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		9193CB381C06517700AFE9BE /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		91BAEDBC1C05B88100CDF292 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		91BAEDBF1C05C1A000CDF292 /* NetflixRestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixRestManager.swift; sourceTree = "<group>"; };
 		91BAEDC11C06320F00CDF292 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		91C7C0D21C075AE300F69D02 /* NetflixDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixDataManager.swift; sourceTree = "<group>"; };
 		91E8AF441C0597CE0047ED16 /* Netflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E8AF471C0597CE0047ED16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91E8AF491C0597CE0047ED16 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				91BAEDB91C05B20A00CDF292 /* NetflixCoreDataStack.swift */,
+				91C7C0D21C075AE300F69D02 /* NetflixDataManager.swift */,
 			);
 			name = CoreDataStack;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			children = (
 				91BAEDBC1C05B88100CDF292 /* HomeViewController.swift */,
 				9193CB351C0643D100AFE9BE /* MovieTableViewCell.swift */,
+				915625701C073A6600208528 /* MovieTableCollectionViewCell.swift */,
 			);
 			name = HomeScreen;
 			sourceTree = "<group>";
@@ -441,12 +447,14 @@
 			files = (
 				91E8AF4A1C0597CE0047ED16 /* WelcomeViewController.swift in Sources */,
 				91B1F5281C06E90D00A5CB73 /* Favorite.swift in Sources */,
+				91C7C0D31C075AE300F69D02 /* NetflixDataManager.swift in Sources */,
 				91E8AF481C0597CE0047ED16 /* AppDelegate.swift in Sources */,
 				91BAEDC21C06320F00CDF292 /* Movie.swift in Sources */,
 				91BAEDBA1C05B20A00CDF292 /* NetflixCoreDataStack.swift in Sources */,
 				91BAEDB61C05A92F00CDF292 /* User+CoreDataProperties.swift in Sources */,
 				91B1F5271C06E90D00A5CB73 /* Favorite+CoreDataProperties.swift in Sources */,
 				91BAEDB71C05A92F00CDF292 /* User.swift in Sources */,
+				915625711C073A6600208528 /* MovieTableCollectionViewCell.swift in Sources */,
 				91BAEDBD1C05B88100CDF292 /* HomeViewController.swift in Sources */,
 				91BAEDC01C05C1A000CDF292 /* NetflixRestManager.swift in Sources */,
 				9193CB391C06517700AFE9BE /* MovieDetailsViewController.swift in Sources */,
