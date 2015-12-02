@@ -60,6 +60,29 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.presentViewController(alertController, animated: true) {}
     }
     
+    //MARK: inputValidations
+    
+    private func inputIsValid() -> Bool {
+        var result = false
+        if let userName = txtUserName.text {
+            if userName.isEmpty {
+                lblUserName.textColor = UIColor.redColor()
+            } else {
+                lblUserName.textColor = UIColor.blackColor()
+                result = true
+            }
+        }
+        if let favoriteActor = txtFavoriteActor.text {
+            if favoriteActor.isEmpty {
+                lblFavoriteActor.textColor = UIColor.redColor()
+            } else {
+                lblFavoriteActor.textColor = UIColor.blackColor()
+                result = true
+            }
+        }
+        return result
+    }
+    
     //MARK: UIImagePicker
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -79,26 +102,8 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     //MARK: - Navigation
     
     @IBAction func enterButtonTapped(sender: UIButton) {
-        if let userName = txtUserName.text {
-            if userName.isEmpty {
-                // Show something
-                lblUserName.textColor = UIColor.redColor()
-            } else {
-                lblUserName.textColor = UIColor.blackColor()
-                if let favoriteActor = txtFavoriteActor.text {
-                    if favoriteActor.isEmpty {
-                        // Show something
-                        lblFavoriteActor.textColor = UIColor.redColor()
-                    } else {
-                        lblFavoriteActor.textColor = UIColor.blackColor()
-                        performSegueWithIdentifier("welcomeToHomeSegue", sender: self)
-                    }
-                } else {
-                    lblFavoriteActor.textColor = UIColor.redColor()
-                }
-            }
-        } else {
-            lblUserName.textColor = UIColor.redColor()
+        if inputIsValid() {
+            performSegueWithIdentifier("welcomeToHomeSegue", sender: self)
         }
     }
     

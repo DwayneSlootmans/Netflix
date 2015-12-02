@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -134,6 +134,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Hpc-5c-eST" userLabel="background">
+                                                    <rect key="frame" x="-45" y="-16" width="240" height="128"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Tzy-s0-Fxh">
+                                                    <rect key="frame" x="80" y="0.0" width="70" height="95"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="KNj-5i-uaj"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohS-qN-zsL">
                                                     <rect key="frame" x="120" y="33" width="30" height="30"/>
                                                     <animations/>
@@ -150,7 +161,7 @@
                                                     <rect key="frame" x="5" y="0.0" width="107" height="95"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -158,17 +169,25 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Hpc-5c-eST" secondAttribute="trailing" constant="-53" id="4EU-Kq-eG0"/>
+                                            <constraint firstItem="Tzy-s0-Fxh" firstAttribute="top" secondItem="d1w-87-kPV" secondAttribute="top" id="6D7-VL-OlK"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tzy-s0-Fxh" secondAttribute="trailing" id="7Eh-1m-vua"/>
+                                            <constraint firstItem="Hpc-5c-eST" firstAttribute="top" secondItem="d1w-87-kPV" secondAttribute="topMargin" constant="-24" id="9Cy-mv-x7A"/>
                                             <constraint firstItem="JH4-dR-QtQ" firstAttribute="top" secondItem="d1w-87-kPV" secondAttribute="top" id="HKH-Py-Vao"/>
                                             <constraint firstAttribute="bottom" secondItem="JH4-dR-QtQ" secondAttribute="bottom" id="Jk9-WT-MQN"/>
+                                            <constraint firstItem="Hpc-5c-eST" firstAttribute="leading" secondItem="d1w-87-kPV" secondAttribute="leadingMargin" constant="-53" id="Ktj-3D-cfI"/>
                                             <constraint firstAttribute="trailing" secondItem="ohS-qN-zsL" secondAttribute="trailing" id="NpS-gq-i9s"/>
                                             <constraint firstItem="JH4-dR-QtQ" firstAttribute="leading" secondItem="d1w-87-kPV" secondAttribute="leading" constant="5" id="aFx-6Y-NUQ"/>
-                                            <constraint firstItem="ohS-qN-zsL" firstAttribute="leading" secondItem="JH4-dR-QtQ" secondAttribute="trailing" constant="8" id="jaY-CV-thw"/>
+                                            <constraint firstItem="ohS-qN-zsL" firstAttribute="leading" secondItem="JH4-dR-QtQ" secondAttribute="trailing" constant="8" id="cKh-tM-rKh"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Hpc-5c-eST" secondAttribute="bottom" constant="-25" id="dxl-ZW-ZnF"/>
                                             <constraint firstItem="ohS-qN-zsL" firstAttribute="centerY" secondItem="JH4-dR-QtQ" secondAttribute="centerY" id="k1p-la-GhU"/>
+                                            <constraint firstAttribute="bottom" secondItem="Tzy-s0-Fxh" secondAttribute="bottom" id="vN3-Vo-l9y"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="btnFavorite" destination="ohS-qN-zsL" id="wFo-3s-6l0"/>
+                                            <outlet property="imageViewPoster" destination="Tzy-s0-Fxh" id="60X-Nx-NBu"/>
                                             <outlet property="lblTitle" destination="JH4-dR-QtQ" id="T2I-EI-By1"/>
                                         </connections>
                                     </collectionViewCell>
@@ -327,7 +346,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movieBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Jpb-aO-5sn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_background" translatesAutoresizingMaskIntoConstraints="NO" id="Jpb-aO-5sn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
@@ -370,10 +389,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_user" width="128" height="128"/>
-        <image name="favorite_empty" width="128" height="128"/>
+        <image name="add_user" width="42" height="42"/>
+        <image name="favorite_empty" width="42" height="42"/>
         <image name="list_icon" width="14" height="15"/>
-        <image name="movieBackground" width="736" height="959"/>
+        <image name="movie_background" width="533" height="754"/>
+        <image name="movie_placeholder" width="384" height="254"/>
         <image name="thumbnails_icon" width="15" height="15"/>
     </resources>
 </document>

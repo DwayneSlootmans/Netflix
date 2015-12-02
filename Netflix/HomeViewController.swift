@@ -52,8 +52,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segmentedControl.selectedSegmentIndex == 0 {
             self.collectionView.hidden = true
             self.tableView.hidden = false
+            self.tableView.reloadData()
         } else {
             self.collectionView.hidden = false
+            self.collectionView.reloadData()
             self.tableView.hidden = true
         }
     }
@@ -100,6 +102,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let movie = movies[indexPath.row] as? Movie {
             if favorites.containsObject(movie.title) {
                 cell.btnFavorite.setImage(UIImage(named: "favorite_full"), forState: UIControlState.Normal)
+            }
+            if !movie.poster.isEmpty {
+                cell.imageViewPoster.downloadedFrom(link: movie.poster, contentMode: UIViewContentMode.ScaleAspectFit)
             }
             cell.lblTitle.text = "\(movie.title) (\(movie.releaseYear))"
             cell.movie = movie
