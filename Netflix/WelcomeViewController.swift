@@ -21,7 +21,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblFavoriteActor: UILabel!
     
-    var user:User?
+    private var user:User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,30 +45,32 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imageViewAvatarTapped() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
+            
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            
+            }
+            alertController.addAction(cancelAction)
+            
+            let photoLibraryAction = UIAlertAction(title: "Photo Libary", style: UIAlertActionStyle.Default) { (action) in
+                picker.sourceType = .SavedPhotosAlbum
+                self.presentViewController(picker, animated: true, completion: nil)
+            }
+            alertController.addAction(photoLibraryAction)
+            
+            let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default) { (action) in
+                picker.sourceType = .Camera
+                self.presentViewController(picker, animated: true, completion: nil)
+            }
+            alertController.addAction(takePhotoAction)
+            
+            self.presentViewController(alertController, animated: true) {}
         }
-        alertController.addAction(cancelAction)
-        
-        let photoLibraryAction = UIAlertAction(title: "Photo Libary", style: UIAlertActionStyle.Default) { (action) in
-            picker.sourceType = .SavedPhotosAlbum
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-        alertController.addAction(photoLibraryAction)
-        
-        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default) { (action) in
-            picker.sourceType = .Camera
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-        alertController.addAction(takePhotoAction)
-        
-        self.presentViewController(alertController, animated: true) {}
     }
     
     func dismissKeyboard() {
