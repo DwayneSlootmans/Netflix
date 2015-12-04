@@ -78,9 +78,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let movie = movies[indexPath.row] as? Movie {
             if favorites.containsObject(movie.title) {
                 cell.btnFavorite.setImage(UIImage(named: "favorite_full"), forState: UIControlState.Normal)
-            }
-            if !movie.poster.isEmpty {
-                cell.imageViewPoster.setImageWithURL(NSURL(string: movie.poster), placeholderImage: UIImage(named: "movie_placeholder"))
+            } else {
+                cell.btnFavorite.setImage(UIImage(named: "favorite_empty"), forState: UIControlState.Normal)
             }
             cell.lblTitle.text = "\(movie.title) (\(movie.releaseYear))"
             cell.movie = movie
@@ -106,6 +105,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let movie = movies[indexPath.row] as? Movie {
             if favorites.containsObject(movie.title) {
                 cell.btnFavorite.setImage(UIImage(named: "favorite_full"), forState: UIControlState.Normal)
+            } else {
+                cell.btnFavorite.setImage(UIImage(named: "favorite_empty"), forState: UIControlState.Normal)
             }
             if !movie.poster.isEmpty {
                 cell.imageViewPoster.setImageWithURL(NSURL(string: movie.poster), placeholderImage: UIImage(named: "movie_placeholder"))
