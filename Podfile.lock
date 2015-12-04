@@ -1,10 +1,13 @@
 PODS:
   - AFNetworking (0.10.1)
+  - EDStarRating (1.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - EDStarRating
 
 SPEC CHECKSUMS:
   AFNetworking: 560d6b9394bf2f80c1efac9141e0d36739e0ff6d
+  EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
 
 COCOAPODS: 0.39.0

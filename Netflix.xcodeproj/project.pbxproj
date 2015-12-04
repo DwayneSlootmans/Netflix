@@ -55,6 +55,7 @@
 		9193CB331C063E9300AFE9BE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9193CB351C0643D100AFE9BE /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		9193CB381C06517700AFE9BE /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		91A72B491C118B5100948DCC /* Netflix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Netflix-Bridging-Header.h"; sourceTree = "<group>"; };
 		91B1F5251C06E90D00A5CB73 /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		91B1F5261C06E90D00A5CB73 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		91BAEDB41C05A92F00CDF292 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		91BAEDB11C05A75E00CDF292 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				91A72B491C118B5100948DCC /* Netflix-Bridging-Header.h */,
 				15C8C0721C0AEBD200B10679 /* Assets.xcassets */,
 				91E8AF471C0597CE0047ED16 /* AppDelegate.swift */,
 				91E8AF561C0597CE0047ED16 /* Info.plist */,
@@ -603,10 +605,13 @@
 			baseConfigurationReference = FE906750DDF9DCE0225A948C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Netflix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DwayneSlootmans.Netflix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Netflix/Netflix-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -615,10 +620,12 @@
 			baseConfigurationReference = 17B35A7A8EF46A6AE7299D68 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Netflix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DwayneSlootmans.Netflix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Netflix/Netflix-Bridging-Header.h";
 			};
 			name = Release;
 		};

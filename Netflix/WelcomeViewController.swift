@@ -8,7 +8,13 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+/*
+/ Because this is such a small project I decided to just reuse this view controller for the 2 views in the storyboard.
+/ I weighed the amount of work needed to show/hide the tabbar and decided to just duplicate the view in the storyboard, even though 
+/ that is a duplication and not good for later changes.
+*/
+
+class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate {
     @IBOutlet weak var imageViewAvatar: UIImageView!
     @IBOutlet weak var txtUserName: UITextField!
     @IBOutlet weak var txtFavoriteActor: UITextField!
@@ -19,6 +25,11 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.delegate = self
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "dismissKeyboard"))
+        
         // Fetch user from DB and show details if present
         user = NetflixDataManager.sharedManager.getCurrentUserDetails()
         if let currentUser = user {
@@ -60,6 +71,10 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.presentViewController(alertController, animated: true) {}
     }
     
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     //MARK: inputValidations
     
     private func inputIsValid() -> Bool {
@@ -83,6 +98,13 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         return result
     }
     
+    private func saveSettings() {
+        user?.userName = txtUserName.text
+        user?.favoriteActor = txtFavoriteActor.text
+        NetflixCoreDataStack.sharedInstance.saveContext()
+        self.dismissKeyboard()
+    }
+    
     //MARK: UIImagePicker
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -101,6 +123,11 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     //MARK: - Navigation
     
+    @IBAction func saveButtonTapped(sender: UIButton) {
+        inputIsValid()
+        self.saveSettings()
+    }
+    
     @IBAction func enterButtonTapped(sender: UIButton) {
         if inputIsValid() {
             performSegueWithIdentifier("welcomeToHomeSegue", sender: self)
@@ -117,6 +144,20 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
                 homeViewController.currentUser = user
             }
         }
+    }
+    
+    //MARK: - TabbarController Delegate
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if let _ = viewController as? UINavigationController {
+            if inputIsValid() {
+                self.saveSettings()
+                return true
+            }
+        }
+        if let _ = viewController as? WelcomeViewController {
+            return true
+        }
+        return false
     }
 }
 

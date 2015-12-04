@@ -16,22 +16,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var currentUser:User?
     private var movies:NSArray = Array<Movie>()
     private var favorites:NSArray = Array<String>()
-    
     private var selectedMovieIndex:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Set delegate and datasource of tableview
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        currentUser = NetflixDataManager.sharedManager.getCurrentUserDetails()
         
-        //Get current user if none was passed just to be sure
-        if currentUser == nil {
-            currentUser = NetflixDataManager.sharedManager.getCurrentUserDetails()
-        }
         self.title = currentUser?.favoriteActor
         
         // Fetch movies and update data
@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func segmentedControlDidChangeValue(sender: AnyObject) {
+        // With more time I would have liked to refactor this to a better solution using UICollectionViewLayout.
         if segmentedControl.selectedSegmentIndex == 0 {
             self.collectionView.hidden = true
             self.tableView.hidden = false
@@ -78,6 +79,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if favorites.containsObject(movie.title) {
                 cell.btnFavorite.setImage(UIImage(named: "favorite_full"), forState: UIControlState.Normal)
             }
+            if !movie.poster.isEmpty {
+                cell.imageViewPoster.setImageWithURL(NSURL(string: movie.poster), placeholderImage: UIImage(named: "movie_placeholder"))
+            }
             cell.lblTitle.text = "\(movie.title) (\(movie.releaseYear))"
             cell.movie = movie
         }
@@ -104,7 +108,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.btnFavorite.setImage(UIImage(named: "favorite_full"), forState: UIControlState.Normal)
             }
             if !movie.poster.isEmpty {
-                cell.imageViewPoster.downloadedFrom(link: movie.poster, contentMode: UIViewContentMode.ScaleAspectFit)
+                cell.imageViewPoster.setImageWithURL(NSURL(string: movie.poster), placeholderImage: UIImage(named: "movie_placeholder"))
             }
             cell.lblTitle.text = "\(movie.title) (\(movie.releaseYear))"
             cell.movie = movie

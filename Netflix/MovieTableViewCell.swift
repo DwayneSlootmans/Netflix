@@ -11,6 +11,7 @@ import UIKit
 class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var imageViewPoster: UIImageView!
     
     var movie:Movie!
 
